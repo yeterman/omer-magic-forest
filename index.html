@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#172b35"><title>היער הקסום של עומר</title><link rel="stylesheet" href="style.css"></head>
+<body><canvas id="world" aria-label="עולם היער הקסום"></canvas>
+<div id="hud" hidden><header><div class="brand"><span class="eyebrow">ההרפתקה של עומר · גרסה 0.11</span><h1>היער הקסום <span>✧</span></h1></div><button id="home" class="glass">⌂ <span>הביתה</span></button><button id="journal" class="glass">☷ <span>המסע שלי</span></button></header>
+<section id="quest" class="glass"><span class="eyebrow">בעקבות הקסם</span><h2 id="questTitle"></h2><p id="questText"></p><div id="progress"></div></section>
+<div id="inventory" class="glass"></div><div id="toast" role="status"></div><div id="nearby"></div>
+<nav id="forms" class="glass" aria-label="החלפת צורה"><button data-form="horse"><b>♞</b><span>סוס קסום</span><small>זרע אחד</small></button><button data-form="eagle"><b>🦅</b><span>עיט</span><small>נוצה אחת</small></button><button data-form="dolphin"><b>🐬</b><span>דולפין</span><small>פנינה אחת · במים</small></button></nav>
+<div id="joystick" aria-label="ג׳ויסטיק תנועה"><div id="stick"></div></div><div id="actions"><button id="verticalDown" aria-label="ירידה">↓</button><button id="jump" aria-label="קפיצה או עלייה">↑</button><button id="interact">✦<span>פעולה</span></button></div><p id="hint">WASD לתנועה · גרירה לסיבוב המצלמה · E לפעולה · רווח לקפיצה</p></div>
+<div id="welcome" class="overlay"><section class="welcome-card"><span class="eyebrow">מקום קטן. קסם אינסופי.</span><div class="sigil">✧</div><h1>היער הקסום<br><em>של עומר</em></h1><p>לרוץ בין עצים זוהרים, לפרוש כנפיים,<br>ולגלות את הקסם שמחכה מעבר לשביל.</p><button id="start" class="primary">בואי נצא להרפתקה <span>←</span></button><small>סוס קסום · עיט · דולפין<br>לחקור. לגלות. לעזור.</small><p id="loadError" hidden></p></section></div>
+<dialog id="book"><button id="closeBook" class="close" aria-label="סגירה">×</button><span class="eyebrow">הסיפורים שאספנו בדרך</span><h2>המסע שלי</h2><div id="bookContent"></div></dialog>
+<dialog id="house"><button id="closeHouse" class="close" aria-label="סגירה">×</button><span class="eyebrow">קרחת היער שלך</span><h2>ברוכה הבאה הביתה</h2><p>כאן אפשר לנוח, לטפל בחברים ולקשט את הבית.</p><button id="care" class="primary">♡ לטפל בארנבת</button><h3>פינת הקישוטים</h3><div id="decorations"></div></dialog>
+<script type="module" src="game.js?v=water-11"></script></body></html>
