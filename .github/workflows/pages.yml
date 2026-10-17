@@ -36,10 +36,11 @@ jobs:
           node --check abilities.js
           node --check ability-world.js
           node --check rescue-quest.js
+          node --check minimap.js
       - name: Prepare static game
         run: |
           mkdir _site
-          cp index.html style.css game.js nature.js realAnimals.js performance.js water.js water-map.js quests.js animal-library.js animal-behavior.js abilities.js ability-world.js rescue-quest.js _site/
+          cp index.html style.css game.js nature.js realAnimals.js performance.js water.js water-map.js quests.js animal-library.js animal-behavior.js abilities.js ability-world.js rescue-quest.js minimap.js _site/
           cp -R vendor models textures _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
