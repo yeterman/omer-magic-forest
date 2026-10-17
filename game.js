@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
-import {forms,formKind,unlocked,attachAnimal} from './animal-library.js';
-import {createAnimalBehavior} from './animal-behavior.js';
+import {forms,formKind,unlocked,attachAnimal} from './animal-library.js?v=opaque-animals-16-2';
+import {createAnimalBehavior} from './animal-behavior.js?v=behavior-16';
 import {activeQuest,questDefinitions,registerQuestItem} from './quests.js';
 import {forestPond,waterAt,waterDepth} from './water-map.js';
 import {addWaterTerrain,updateWater,underwaterCamera} from './water.js';
