@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import {rescue,rescueQuest,rescueStage,advanceRescue} from '../rescue-quest.js';
+
+const complete={rabbit:true,nest:true,lake:true,reef:true,garden:true,lookout:true,rescue:false};
+const state={form:'fox',quests:{...complete},inventory:{seed:0,feather:0}};
+assert.equal(rescueStage(state),'track');
+assert.match(rescueQuest(state).text,/שועל/);
+assert.equal(advanceRescue(state,'horse',{x:rescue.clue[0],y:rescue.clue[1],z:rescue.clue[2]}),null);
+assert.equal(advanceRescue(state,'fox',{x:0,y:0,z:0}),null);
+assert.equal(advanceRescue(state,'fox',{x:rescue.clue[0],y:rescue.clue[1],z:rescue.clue[2]}),'clue');
+assert.equal(rescueStage(state),'reach');assert.match(rescueQuest(state).text,/תוכי/);
+const saved=JSON.parse(JSON.stringify(state));
+assert.equal(rescueStage(saved),'reach');
+assert.equal(advanceRescue(saved,'fox',{x:rescue.animal[0],y:rescue.animal[1],z:rescue.animal[2]}),null);
+assert.equal(advanceRescue(saved,'parrot',{x:rescue.animal[0],y:rescue.animal[1],z:rescue.animal[2]}),'done');
+assert.equal(saved.quests.rescue,true);assert.equal(saved.inventory.seed,4);assert.equal(saved.inventory.feather,4);
+assert.equal(advanceRescue(saved,'parrot',{x:rescue.animal[0],y:rescue.animal[1],z:rescue.animal[2]}),null);
+assert.equal(saved.inventory.seed,4);assert.equal(saved.inventory.feather,4);
+const locked={quests:{...complete,nest:false},inventory:{seed:0,feather:0}};
+assert.match(rescueQuest(locked).text,/גלי את הקן/);
+assert.equal(advanceRescue(locked,'fox',{x:rescue.clue[0],y:rescue.clue[1],z:rescue.clue[2]}),null);
+console.log('PASS: unlock gate, fox clue, saved stage, parrot rescue and single reward.');
