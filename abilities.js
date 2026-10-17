@@ -2,9 +2,12 @@ export const abilities={
   fox:{title:'אף של בלש',hint:'עקבות זהובות נראות רק כשועל. עקבי אחריהן משמאל לבית עד האוצר.',target:[-18,.6,-1]},
   deer:{title:'קפיצת אייל',hint:'רווח או ↑ לקפיצה גבוהה. דלגי מעל הגזע בחצר האיילה, משמאל לבית.',target:[-15,.6,18]},
   parrot:{title:'כנפיים קטנות',hint:'עופי אל התא שבצמרות מצפון לבית. רק תוכי יכול לעבור בפתח הקטן.',target:[-8,9.5,-25]},
-  fish:{title:'מעבר בין סלעים',hint:'צללי אל התא הסלעי בדרום האגם. רק דג קטן יכול לעבור בפתח.',target:[26,-3,-21]}
+  fish:{title:'מעבר בין סלעים',hint:'צללי אל התא הסלעי בדרום האגם. רק דג קטן יכול לעבור בפתח.',target:[26,-3,-21]},
+  rabbit:{title:'זינוק מהיר',hint:'הארנבת רצה מהר וקופצת גבוה. חפשי אוצר ליד הסכר המתוקן.',target:[-33,.6,25]},
+  owl:{title:'מעוף שקט',hint:'הינשוף עף בשקט ובשליטה. חפשי אוצר מעל צמרות הנהר.',target:[24,14,-48]},
+  otter:{title:'שחיית זרם',hint:'הלוטרה שוחה מהר במים עמוקים. חפשי אוצר בערוץ הנהר.',target:[24,-4,-62]}
 };
-export const jumpSpeed=form=>form==='deer'?8.5:5;
+export const jumpSpeed=form=>form==='deer'?8.5:form==='rabbit'?7.4:5;
 export const chambers=[{id:'parrot',x:-8,y:9.5,z:-25},{id:'fish',x:26,y:-3,z:-21}];
 // Match the visible walls, including a small body clearance around every wall.
 export const barriers=[
@@ -26,7 +29,7 @@ export function claimAbilityTreasure(state,id,position){
   const a=abilities[id];
   if(!a||state.form!==id||state.abilityTreasures?.includes(id)||Math.hypot(position.x-a.target[0],position.y-a.target[1],position.z-a.target[2])>(id==='parrot'||id==='fish'?.9:1.8))return false;
   state.abilityTreasures??=[];state.abilityTreasures.push(id);
-  const key=id==='fish'?'pearl':id==='parrot'?'feather':'seed';
+  const key=['fish','otter'].includes(id)?'pearl':['parrot','owl'].includes(id)?'feather':'seed';
   state.inventory[key]+=3;
   return true;
 }

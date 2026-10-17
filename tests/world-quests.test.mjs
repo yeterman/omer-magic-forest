@@ -1,0 +1,21 @@
+import assert from 'node:assert/strict';
+import {beaverQuest,mailQuest,duckQuest,handleWorldQuest} from '../world-quests.js';
+
+const state={quests:{beaver:false,mail:false,ducklings:false},inventory:{seed:0,feather:0},beaverBranches:[],mailDelivered:[],ducklingsFound:[]};
+assert.equal(handleWorldQuest(state,'branch',2,'horse').ok,false);
+for(const [i,form] of [[0,'horse'],[1,'horse'],[2,'deer']])assert.equal(handleWorldQuest(state,'branch',i,form).ok,true);
+assert.equal(beaverQuest(state).target[0],-30);
+assert.equal(handleWorldQuest(state,'beaver',0,'deer').complete,true);
+assert.equal(state.inventory.seed,6);
+assert.equal(handleWorldQuest(state,'mailBag',0,'eagle').ok,false);
+assert.equal(handleWorldQuest(state,'mailBag',0,'parrot').ok,true);
+for(let i=0;i<3;i++)handleWorldQuest(state,'recipient',i,'parrot');
+assert.equal(state.quests.mail,true);assert.equal(state.inventory.feather,6);
+assert.equal(handleWorldQuest(state,'duckling',0,'horse').ok,false);
+for(let i=0;i<3;i++)handleWorldQuest(state,'duckling',i,'fox');
+assert.equal(state.quests.ducklings,true);assert.equal(state.inventory.seed,10);assert.equal(state.inventory.feather,10);
+handleWorldQuest(state,'duckling',2,'fox');
+assert.equal(state.inventory.seed,10);assert.equal(state.inventory.feather,10);
+assert.equal(mailQuest({mailStarted:false,mailDelivered:[]}).target[1],10);
+assert.equal(duckQuest({ducklingsFound:[0]}).target[0],34);
+console.log('PASS: beaver branches and deer gate, parrot mail, fox ducklings, dynamic targets and single rewards.');
