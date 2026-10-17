@@ -1,7 +1,7 @@
 import * as T from './vendor/three.module.js';
 import {mergeGeometries} from './vendor/BufferGeometryUtils.js';
-export const mobile=(matchMedia('(pointer: coarse)').matches||matchMedia('(max-width: 900px)').matches)||/iPhone|iPad|Android/i.test(navigator.userAgent);
-export const quality={leaves:mobile?360:850,grass:mobile?650:1600,pixelRatio:mobile?1.1:1.6};
+export const mobile=new URLSearchParams(location.search).has('mobile')||(matchMedia('(pointer: coarse)').matches||matchMedia('(max-width: 900px)').matches)||/iPhone|iPad|Android/i.test(navigator.userAgent);
+export const quality={leaves:mobile?220:850,grass:mobile?380:1600,pixelRatio:mobile?1:1.6};
 // Batch static meshes with identical materials. Interactive roots retain their own transforms.
 export function batchMeshes(root,skipInteractive=false){root.updateWorldMatrix(true,true);const inverse=root.matrixWorld.clone().invert(),groups=new Map();
 function collect(node){if(skipInteractive&&node.userData.interactive)return;if(node.isMesh&&!node.isInstancedMesh&&!Array.isArray(node.material)){const key=node.material.uuid+Object.keys(node.geometry.attributes).sort().join(',');if(!groups.has(key))groups.set(key,[]);groups.get(key).push(node);}for(const c of node.children)collect(c);}collect(root);
