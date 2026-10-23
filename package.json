@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
-    "check": "node --check game.js && node --check server.mjs && node --check animal-library.js && node --check animal-behavior.js && node --check abilities.js && node --check ability-world.js && node --check rescue-quest.js && node --check melody-quest.js && node --check world-quests.js && node --check movement-rules.js && node --check minimap.js && node --check water-map.js && node --check water.js",
+    "check": "node --check game.js && node --check server.mjs && node --check animal-library.js && node --check animal-behavior.js && node --check abilities.js && node --check ability-world.js && node --check rescue-quest.js && node --check melody-quest.js && node --check world-quests.js && node --check movement-rules.js && node --check diagnostics.js && node --check minimap.js && node --check water-map.js && node --check water.js",
     "test": "node tests/animal-behavior.test.mjs && node tests/abilities.test.mjs && node tests/animal-forms.test.mjs && node tests/rescue-quest.test.mjs && node tests/melody-quest.test.mjs && node tests/world-quests.test.mjs && node tests/movement-rules.test.mjs && node tests/minimap.test.mjs && node tests/water-depth.test.mjs"
   }
 }
